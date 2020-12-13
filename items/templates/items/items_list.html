@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+	<link href="{% static 'css/items.css' %}" rel="stylesheet">
+	<script type="javascript" href="{% static 'js/items.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				{% for item in items %}
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h3>{{item.name}}</h3>
+							<p class></p>
+							<hr>
+							<h5><strong>Avalable Quantitiy:</strong> {{item.available_units}}</h5>
+							<p>{{items.category.0}}</p>
+							<h5><strong>Price:</strong> {{item.price}}</h5>
+							<ul class="nav nav-tabs nav-justified">
+								<li class="active"><a data-toggle="tab" href="#{{item.id}}-discription">Discription </a>  </li>
+								<li><a data-toggle="tab" href="#{{item.id}}-usage">How To Use</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="{{item.id}}-discription" class="tab-pane fade in active">
+									<p>{{item.discription}}</p>
+								</div>
+								<div id="{{item.id}}-usage" class="tab-pane fade">
+									<p>{{item.how_to_use}}</p>
+								</div>
+							</div>
+							
+						</li>
+					</ul>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+
+
+	
+{% endblock main %}
+
+
+{% block pages %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				{% if items.has_other_pages %}
+					<ul class="pagination">
+						{% if items.has_previous %}
+						<li><a href="?page={{items.previous_page_number}}">&laquo;</a></li>
+						{% else %}
+						<li class="disabled"><span>&laquo;</span></li>
+						{% endif %}
+						{% for i in items.paginator.page_range %}
+							{% if items.number == i %}
+								<li class="active"><span>{{i}}</span></li>
+							{% else %}
+								<li><a href="?page={{i}}">{{i}}</a></li>
+							{% endif %}
+						{% endfor %}
+						{% if items.has_next %}
+							<li><a href="?page={{items.next_page_number}}"> &raquo;</a>	</li>
+						{% else %}
+							<li class="disabled"><span>&raquo;</span></li>
+						{% endif %}
+					</ul>
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+{% endblock pages %}

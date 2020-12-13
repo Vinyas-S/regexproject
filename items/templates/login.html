@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %} 
+Login {% endblock title %}
+
+{% block main %}
+
+<div class="container-fluid">
+	
+<div class="row">
+		
+<div class="col-md-6 col-md-offset-3">
+			
+<h2>LOGIN</h2>
+			
+<form method='post' action="{% url 'login' %}" role="form">
+				
+{% csrf_token %}
+					
+{{form.as_p}}
+				
+<button type="submit"> Login </button>
+			
+</form>
+			
+<p>New User? <a href="{% url 'sign_up' %}">Register Here</a>
+</p>
+		
+</div>
+	
+</div>
+
+
+</div>
+
+
+{% endblock main %}

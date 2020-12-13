@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+  	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+<title>{% block title %}  {% endblock title %}</title>
+
+	
+<!-- Latest compiled and minified CSS -->
+	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	
+<link rel="stylesheet" type="text/css" 
+href="{% static 'css/base.css' %}">
+
+</head>
+
+<body>
+	
+<nav class= "navbar navbar-fixed-top navbar-inverse">
+	
+
+<div class="container-fluid">
+			
+<div class="navbar-header">
+				
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#thisNavbar">
+					
+<span class="icon-bar"></span>
+					
+<span class="icon-bar"></span>
+					
+<span class="icon-bar"></span>
+				
+</button>
+				
+<a class="navbar-brand" href=""> FallingFruits</a>
+			
+</div>
+
+			
+<div class="collapse navbar-collapse" id= "thisNavbar">
+				
+<ul class="nav navbar-nav navbar-right">
+					
+{% if user.is_authenticated %}
+						
+<li class="active"><a href="{% url 'logout' %}?next=/">Logout</a></li>
+					
+{% else %}
+						
+<li><a target="_blank" href="/admin">Admin</a> </li>
+					
+{% endif %}
+					
+<li><a href="#">Contact</a></li>
+				
+</ul>
+			
+</div>
+		
+</div>
+	
+</nav>
+	
+
+	
+{% block main %}
+	{% endblock main %}
+
+
+	{% block pages %}
+	{% endblock pages %}
+
+
+</body>
+
+</html>
