@@ -2,19 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 
 class SignUp(forms.ModelForm):
-	username= forms.CharField(
-		widget=forms.TextInput(),
-		max_length =30,
-		required=True,
-		)
-
-	password = forms.CharField(
-		widget=forms.PasswordInput(),
-		)
-	confirm_password = forms.CharField(
-		widget = forms.PasswordInput(),
-		label="Confirm Password"
-		)
+	username= forms.CharField(widget=forms.TextInput(),max_length =30,required=True,)
+	password = forms.CharField(widget=forms.PasswordInput())
+	confirm_password = forms.CharField(widget = forms.PasswordInput(),label="Confirm Password")
 	class Meta:
 		model = User
 		fields = ['username', 'password', 'confirm_password']
